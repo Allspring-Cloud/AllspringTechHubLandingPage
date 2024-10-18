@@ -46,58 +46,57 @@
 <!--- use thie example below to add a screenshot if desirted --->
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
+This is a blank template to get started: To avoid retyping too much info. Do a search and replace with your text editor for the following: `github_username`, `repo_name`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Built With
-* ![Javascript]
+* [![Python][Python.org]][Python-url]
+* [![Django][Djangoproject.com]][Django-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![PapaParse][papaparse.com]][PapaParse-url]
+* [![JQuery][JQuery.com]][JQuery-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- GETTING STARTED -->
 ## Getting Started
 
-Any hosting service supporting PHP and the ability for PHP to upload files to the server will suffice.  Below are instructions to self-host on Appache 2 running on Linux
+TODO - Include instrructions for local dev and cloud dev/prod deployment
 
 ### Prerequisites
 
-* Apache web server
+This is an example of how to list things you need to use the software and how to install them.
+* Python
   ```sh
-  sudo apt update
-  sudo apt upgrade
-  sudo apt install apache2
+  request install via TechHub
   ```
-* PHP
+* Django
   ```sh
-  sudo apt install libapache2-mod-php8.2
+  python -m pip install Django
   ```
-
+* Django SSO support
+  ```sh
+  TBD
+  ```
+* Django Active Directory support
+  ```sh
+  TBD
+  ```
 
 ### Installation
 
-1. Clone the repo
+1. To be documented
+2. Clone the repo
    ```sh
-   git clone https://github.com/Allspring-Cloud/AllspringTechHubLandingPage.git
+   git clone https://github.com/github_username/repo_name.git
    ```
-2. Deploy the site
-   ```
-   Copy the contents of teh repos html folder to Apache's html folder on teh server
-   ```
-3. Change the ownership of the 'data', 'logs' and 'upload' folders to the Apache user
+3. Install NPM packages
    ```sh
-   # this assumes the Apache user is 'www-data'
-   sudo chown -R www-data:www-data data
-   sudo chown -R www-data:www-data upload
-   sudo chown -R www-data:www-data logs
+   npm install
    ```
-4. Make the 'data', 'logs' and 'upload' folders writable for the Apache user
-   ```sh
-   # this assumes the Apache user is 'www-data'
-   sudo chmod -R 777 data
-   sudo chmod -R 777 upload
-   sudo chmod -R 777 logs
+4. Enter your API in `config.js`
+   ```js
+   const API_KEY = 'ENTER YOUR API';
    ```
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -111,6 +110,10 @@ https://shields.io/
 [product-screenshot]: images/screenshot.png
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
-[papaparse.com]: https://img.shields.io/badge/PapaParse-0769AD?style=for-the-badge&logo=javascript&logoColor=white
-[PapaParse-url]: https://www.papaparse.com/
-[Javascript]: https://img.shields.io/badge/Javascript-dfca09?style=for-the-badge&logo=javascript&logoColor=ffffff
+[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
+[JQuery-url]: https://jquery.com 
+[Python.org]: https://img.shields.io/badge/Python-255074?style=for-the-badge&logo=python&logoColor=ffda62
+[Python-url]: https://python.org/
+[Python.org]: https://img.shields.io/badge/Python-255074?style=for-the-badge&logo=python&logoColor=ffda62
+[Django-url]: https://www.djangoproject.com/
+[Djangoproject.com]: https://img.shields.io/badge/Django-0c4b33?style=for-the-badge&logo=django&logoColor=ffda62
