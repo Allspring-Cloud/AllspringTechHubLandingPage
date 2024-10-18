@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Alert Style Preview</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"> 
+    <style>
+      /* Add your custom styles here */
+    </style>
+</head>
+<body>
+    <div class="container"> 
+        <h2>Message Saver</h2>
+        <form id="message-form" action="save-message.php" method="post">
+            <div class="row">
+                <div class="col-md-6">           
+                    <label for="message">Enter your message:</label><br>
+                </div> 
+            </div>                 
+            <div class="row">
+                <div class="col-md-10">   
+                    <textarea id="message" name="message" class="form-control"></textarea>
+                </div> 
+            </div> 
+
+            <div class="row">
+                <div class="col-md-10">               
+                <label for="alert-style-dropdown">Alert Style:</label>
+                <select id="alert-style-dropdown" name="alert-style-dropdown" class="form-control"> 
+                    <!-- Populate the dropdown with your alert styles -->
+                    <option value="">Select an Alert Style</option> 
+                    <option value="primary">Primary</option> 
+                    <option value="secondary">Secondary</option>
+                    <option value="success">Success</option>
+                    <option value="danger">Danger</option>
+                    <option value="warning" selected="selected">Warning</option> 
+                    <option value="info">Info</option> 
+                    <option value="light">Light</option> 
+                    <option value="dark">Dark</option> 
+                </select>
+                </div> 
+            </div> 
+            <br>
+            <div class="preview-container" id="messagePreview"></div> 
+            <br>
+            <button type="submit" class="btn btn-primary">Save</button>
+        </form>  
+    </div> 
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    $(document).ready(function() { 
+        const messageForm = $('#message-form'); // Select the form
+        const alertStyleContainer = $('.alert-style-container'); 
+        const previewContainer = $('#messagePreview');  
+
+        // Update preview on style selection
+        const alertStyleDropdown = document.getElementById("alert-style-dropdown"); 
+        alertStyleDropdown.addEventListener('change', function() {
+            updatePreview(); 
+        });
+
+        // Update preview on message change
+        const alertMessage = document.getElementById("message"); 
+        alertMessage.addEventListener('input', function() {
+            updatePreview(); 
+        });
+
+        function updatePreview() { 
+            // Get message from form and style (assuming you have a preview div)
+            const selectedStyle = document.getElementById('alert-style-dropdown').value;
+            const message = document.getElementById('message').value;
+            const previewContainer = document.getElementById('messagePreview');
+
+            previewContainer.innerHTML = `
+                <div class="text-center alert alert-${selectedStyle}">${message}</div>`;  
+        } 
+    });
+</script>
+</body>
+</html>

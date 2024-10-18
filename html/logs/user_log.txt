@@ -1,0 +1,10 @@
+2024-10-16 00:36:12 - Need: I need something new, Category: Compliance, Type: Generic Request, Item: Generic Request, Link: , UniqueID: 
+2024-10-16 00:36:19 - Need: I need something new, Category: Compliance, Type: Generic Request, Item: Generic Request, Link: , UniqueID: 
+2024-10-16 00:36:29 - Need: I need something new, Category: Developers, Type: AWS Account, Item: Create new environment, Link: , UniqueID: 
+2024-10-16 00:45:05 - Need: I need something new, Category: Developers, Type: AWS Account, Item: Create new environment, Link: , UniqueID: 
+2024-10-16 00:45:16 - Need: I have an issue, Category: Software, Software Services, Third Party SaaS, Type: 3rd Party, Item: Can't reach, Link: , UniqueID: 
+2024-10-16 15:36:37 - Need: I have an issue, Category: Conference Rooms, Type: <lookup facilities name>, Item: Broken, Link: , UniqueID: 
+2024-10-16 23:12:19 - Need: I need something new, Category: EMERGENCY, Type: Emergency, Item: Alert Media message, Link: https://allspring.atlassian.net/servicedesk/customer/portal/10?uniqueid=CTI079, UniqueID: CTI079
+2024-10-16 23:12:22 - Need: I need something new, Category: EMERGENCY, Type: Emergency, Item: Alert Media message, Link: https://allspring.atlassian.net/servicedesk/customer/portal/10?uniqueid=CTI079, UniqueID: CTI079
+2024-10-16 23:12:24 - Need: I need something new, Category: EMERGENCY, Type: Emergency, Item: Alert Media message, Link: https://allspring.atlassian.net/servicedesk/customer/portal/10?uniqueid=CTI079, UniqueID: CTI079
+2024-10-16 23:13:19 - Need: I need something new, Category: EMERGENCY, Type: Emergency, Item: Alert Media message, Link: https://allspring.atlassian.net/servicedesk/customer/portal/10?uniqueid=CTI079, UniqueID: CTI079

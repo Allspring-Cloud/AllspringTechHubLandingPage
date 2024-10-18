@@ -1,0 +1,1 @@
+<div class='alert alert-warning text-center' >Alert sample: 'alert-warning' :: This is pulled from a text file on the web server</div>
