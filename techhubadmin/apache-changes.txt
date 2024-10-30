@@ -1,0 +1,33 @@
+# Copy the admin site archive to the server
+# unzip the archive
+  unzip thadmin-241029.zip
+# move teh archive to the /var/www folder
+sudo mv ~/techhubadmin/ /var/www/.
+# fix the file permissions
+sudo chown -R root:root techhubadmin/
+# create apache sites configuration files
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/techhubwip.conf
+sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/techhubadmin.conf
+# change techhubadmin to listen on port 8000
+sudo nano /etc/apache2/sites-available/techhubadmin.conf
+  Change the port from <VirtualHost *:80> to <VirtualHost *:8000>
+  Change the DocumentRoot to /var/www/techhubadmin
+# add port 8000 to apache
+sudo nano /etc/apache2/ports.conf
+  Add Listen 8000
+# Disable the default site
+sudo a2dissite 000-default.conf
+# Enable the techhubwip site for port 80
+sudo a2ensite techhubwip.conf
+# Enable the techhubadmin site for port 8000
+sudo a2ensite techhubadmin.conf
+# reload apache
+sudo systemctl reload apache2
+# restart apache
+sudo systemctl restart apache2.service
+# vaidate apache service is running
+systemctl status apache2.service
+# install net tools - netstat
+sudo apt install net-tools -y
+# validate apache is listening on ports 80 and 8000
+netstat -an | grep LISTEN
