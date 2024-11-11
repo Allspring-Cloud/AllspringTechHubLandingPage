@@ -6,46 +6,119 @@
     <title>Allspringer Experience Landing Page</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .searchField {
+            width: 50%;
+            height: 30px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        th, td {
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+            text-align: left;
+            cursor: pointer;
+            width: auto;
+            /* white-space: nowrap; */
+            word-wrap: break-word;
+        }
+        th {
+            background-color: #f0f0f0;
+            columns: #333;
+        }
+        td {
+            /* width: 100%; */
+            min-width: 180px;
+            padding-left: 2px;
+            padding-top: 0px;
+            padding-bottom: 0px;
+        }
+        #searchResults {
+            width: 80%;
+            border-collapse: collapse;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0;
+        }
+    </style>
 </head>
 <body>
     <div id="message"></div>
     <div class="container mt-5">
         <div id="logo-header"><img src="images/asgg-logo.svg"><br><br></div>
         <div class="row">
-            <div class="col">
+            <div class="col-md-8">
                 <h2>Select Your Need</h2>
                 <div class="mb-3">
-                    <button id="newNeed" class="btn btn-outline-primary">I need something new</button>
-                    <button id="issueNeed" class="btn btn-outline-primary">I have an issue</button>
+                    <button id="issueNeed" class="btn btn-outline-primary">Something is Broken</button>
+                    <button id="newNeed" class="btn btn-outline-primary">I need something New</button>
+                    <button id="searchCTIs" class="btn btn-outline-primary">Quick Search</button>
                 </div>
                 
-                <h3 class="mt-4">Select Your Options</h3>
-                <form id="selectionForm">
-                    <div class="mb-3">
-                        <label for="category" class="form-label">Category</label>
-                        <select class="form-select" id="category" required disabled>
-                            <option value="">Select Category</option>
-                        </select>
+                <div class="mb-3" id="searchDiv" style="display: none;">
+                    <input type="text" id="searchField" class="searchField">
+                    <br><br>
+                    <div class="container" style="width: 100%" id="searched-item-message"></div>
+                    <div class="mb-3" id="seachResultsDiv">
+                        <table id="searchResults">
+                            <colgroup>
+                                <col span="1" style="visibility: collapse;">
+                                <col span="1">
+                                <col span="1" style="visibility: collapse;">
+                                <col span="3">
+                                <col span="4" style="visibility: collapse;">
+                            </colgroup>
+                            <thead>
+                                <th>RowID</th>
+                                <th>Need</th>
+                                <th>Hidden sort</th>
+                                <th>Category</th>
+                                <th>Type</th>
+                                <th>Item</th>
+                                <th>Link</th>
+                                <th>NewLink</th>
+                                <th>UniqueID</th>
+                                <th>LinkMessage</th>
+                            </thead>
+                            <tbody id="searchResultsData"></tbody>
+                        </table>
                     </div>
-                    <div class="mb-3">
-                        <label for="type" class="form-label">Type</label>
-                        <select class="form-select" id="type" required disabled>
-                            <option value="">Select Type</option>
-                        </select>
-                    </div>
-                    <div class="mb-3" id="item-combo">
-                        <label for="item" class="form-label">Item</label>
-                        <select class="form-select" id="item" required disabled>
-                            <option value="">Select Item</option>
-                        </select>
-                    </div>
+                </div>
 
-                    <button type="button" id="submitBtn" class="btn btn-success" disabled>Submit</button>
-                    <input type="hidden" id="itemLink" name="itemLink" value="">
-                    <input type="hidden" id="UniquID" name="UniquID" value="">
-                </form>
+                <div class="mb-3" id="selectionDiv" style="display: none;">
+                    <h3 class="mt-4">Select Your Options</h3>
+                    <form id="selectionForm">
+                        <div class="mb-3" id="selectionCategory">
+                            <label for="category" class="form-label">Category</label>
+                            <select class="form-select" id="category" required disabled>
+                                <option value="">Select Category</option>
+                            </select>
+                        </div>
+                        <div class="mb-3" is="selectionType">
+                            <label for="type" class="form-label">Type</label>
+                            <select class="form-select" id="type" required disabled>
+                                <option value="">Select Type</option>
+                            </select>
+                        </div>
+                        <div class="mb-3" id="item-combo">
+                            <label for="item" class="form-label">Item</label>
+                            <select class="form-select" id="item" required disabled>
+                                <option value="">Select Item</option>
+                            </select>
+                        </div>
+                        <div class="mb-3" id="selectionSubmit">
+                            <button type="button" id="submitBtn" class="btn btn-success" disabled>Submit</button>
+                            <input type="hidden" id="itemLink" name="itemLink" value="">
+                            <input type="hidden" id="UniquID" name="UniquID" value="">
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="col">
+            <div class="col-md-4">
                 <div class="container" style="width: 100%" id="item-message"></div>
             </div>
         </div>
@@ -55,6 +128,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
     <!-- PapaParse JS for CSV parsing -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.mon.js"></script>
     <script src="js/script.js"></script>
 </body>
 </html>

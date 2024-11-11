@@ -1,5 +1,8 @@
 let csvData = [];
 let selectedNeed = "";
+let csvVer = 0;
+let categoryNeed = '';
+let categoryBroken = '';
 
 // Load and parse the CSV file using PapaParse
 window.onload = function () {
@@ -8,6 +11,32 @@ window.onload = function () {
         header: true,
         complete: function(results) {
             csvData = results.data;
+            
+            testCategory = csvData[1]['Need'];
+            if (testCategory === 'I need something New' || csvData[1]['Need'] === 'Something is Broken' ) {
+                csvVer = 1;
+                categoryNeed = 'I need something New'
+                categoryBroken = 'Something is Broken'
+            } else {
+                csvVer = 0;
+                categoryNeed = 'I need something new'
+                categoryBroken = 'I have an issue'
+            }
+            let tbody = document.getElementById("searchResultsData");
+
+            for (let i = 0; i < csvData.length; i++) {
+                let row = tbody.insertRow(i);
+       
+                // loop through each column and create a cell
+                for (const key in csvData[i]) {
+                    const cell = document.createElement('td');
+                    cell.textContent = csvData[i][key];
+                    if (cell.textContent.length > 50) {
+                        cell.style = "white-space: nowrap;"
+                    }
+                    row.appendChild(cell);
+                }
+            }
         }
     });
 
@@ -21,21 +50,67 @@ window.onload = function () {
     })
     .catch(error => console.error('Error:', error));    
 
+    // hide selction and seach div
+    selectionDiv.style.display = 'none';
+    searchDiv.style.display = 'none';
+
     // Add event listeners to the "Need" buttons
     document.getElementById("newNeed").addEventListener("click", function() {
-        handleNeedSelection("I need something new", "newNeed", "issueNeed");
+        handleNeedSelection(categoryNeed, "newNeed", "issueNeed");
     });
 
     document.getElementById("issueNeed").addEventListener("click", function() {
-        handleNeedSelection("I have an issue", "issueNeed", "newNeed");
+        handleNeedSelection(categoryBroken, "issueNeed", "newNeed");
+    });
+
+    document.getElementById("searchCTIs").addEventListener("click", function() {
+        // clear select item message popup
+        const itemMessageDiv = document.getElementById("item-message");
+        itemMessageDiv.innerHTML = ''; 
+        showSearchCTIs();
     });
 
     // Add event listener for the submit button
     document.getElementById("submitBtn").addEventListener("click", handleSubmit);
+
+    // add search trigger
+    document.getElementById("searchField").addEventListener('input', function() {
+        let searchTerm = this.value.toLowerCase();
+        let tbody = document.getElementById("searchResults");
+        searchTable(tbody, searchTerm);
+    });
+
+    document.getElementById("searchField").addEventListener("focus", function() {
+        showLinkMessage("");
+    });
+
+    // add onclick event to table
+    document.getElementById("searchResults").addEventListener('click', function(event) {
+        handleSearchRowClick(event);
+    });
 };
+
+// Handle searchCTis click - table display and setup
+function showSearchCTIs() {
+    // show/hide selction and seach div
+    selectionDiv.style.display = 'none';
+    searchDiv.style.display = 'block';
+
+    // Update button styles to show which is selected
+    document.getElementById("searchCTIs").classList.add("btn-primary");
+    document.getElementById("searchCTIs").classList.remove("btn-outline-primary", "btn-outline-secondary");
+    document.getElementById("newNeed").classList.add("btn-outline-secondary");
+    document.getElementById("newNeed").classList.remove("btn-primary");
+    document.getElementById("issueNeed").classList.add("btn-outline-secondary");
+    document.getElementById("issueNeed").classList.remove("btn-primary");
+}
 
 // Handle need selection and style the buttons accordingly
 function handleNeedSelection(need, clickedBtnId, otherBtnId) {
+    // show/hide selction and seach div
+    selectionDiv.style.display = 'block';
+    searchDiv.style.display = 'none';
+
     selectedNeed = need; // Update global selectedNeed variable
 
     // Update button styles to show which is selected
@@ -43,6 +118,8 @@ function handleNeedSelection(need, clickedBtnId, otherBtnId) {
     document.getElementById(clickedBtnId).classList.remove("btn-outline-primary", "btn-outline-secondary");
     document.getElementById(otherBtnId).classList.add("btn-outline-secondary");
     document.getElementById(otherBtnId).classList.remove("btn-primary");
+    document.getElementById("searchCTIs").classList.add("btn-outline-secondary");
+    document.getElementById("searchCTIs").classList.remove("btn-primary");
 
     // Reset and populate the Category dropdown based on the need
     resetDropdowns();
@@ -139,11 +216,6 @@ function populateItemDropdown(data, selectedCategory, selectedType) {
 function itemSelected(data, itemValue) {
     if (itemValue) {
         const itemMessages = data.filter(item => item.RowID === itemValue);
-        /*
-        itemMessages.forEach(item => {
-            console.log(item);
-        });        
-        */
 
         // check if the link field is populated
         thisLink = itemMessages[0].Link;
@@ -212,4 +284,69 @@ function handleSubmit() {
             console.error('Error logging data:', error);
         });
     }
+}
+
+function searchTable(table, searchTerm) {
+    for (var i = 1; i < table.rows.length; i++) {
+        rowStyle = 'none';
+        row = table.rows[i];
+        row.style.display = 'none';
+        for (var j = 0; j < row.children.length; j++) {
+            let cell = row.children[j];
+            if (cell) {
+                if (cell.textContent.toLowerCase().includes(searchTerm)) {
+                    rowStyle = '';
+                }
+            }
+        }
+        row.style.display = rowStyle;
+    }
+}
+
+function handleSearchRowClick(event) {
+    // Check if the clicked element is a table row
+    if (event.target.tagName === "TD") {
+        // Code to execute when the row is clicked
+
+        // get the header values in order to ffind the right columns
+        // Get the table element
+        const table = document.getElementById("searchResults"); 
+        // Get all header cells within the table
+        const headerCells = table.querySelectorAll("th");
+        // Iterate over header cells and extract their values
+        const headerValues = [];
+        headerCells.forEach(headerCell => {
+            headerValues.push(headerCell.textContent);
+        });
+
+        Link = event.target.parentNode.childNodes[headerValues.indexOf("Link")].textContent;
+        UniqueID = event.target.parentNode.childNodes[headerValues.indexOf("UniqueID")].textContent;
+        LinkMessage = event.target.parentNode.childNodes[headerValues.indexOf("LinkMessage")].textContent;
+
+        if (Link.length === 0) {
+            showLinkMessage(LinkMessage);
+        } else if (Link === null) {
+            showLinkMessage(LinkMessage);
+        } else {
+            // go to link
+            showLinkMessage("");
+            gotoLink = Link + "?uniqueid=" + UniqueID;
+            console.log(gotoLink);
+            window.open(gotoLink, '_blank');
+        }
+    }
+
+}
+
+function showLinkMessage(LinkMessage) {
+    if (LinkMessage.length === 0) {
+        LinkMessageDIVContent = "";
+    } else if (LinkMessage === null) {
+        LinkMessageDIVContent = "";
+    } else {
+        LinkMessageDIVContent = '<div class="alert alert-primary">' + LinkMessage + '</div>';
+    }        
+    const itemMessageDiv = document.getElementById("searched-item-message");
+    itemMessageDiv.innerHTML = LinkMessageDIVContent;  
+
 }
