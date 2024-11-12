@@ -13,9 +13,9 @@ window.onload = function () {
             csvData = results.data;
             
             testCategory = csvData[1]['Need'];
-            if (testCategory === 'I need something New' || csvData[1]['Need'] === 'Something is Broken' ) {
+            if (testCategory === 'I need Something New' || csvData[1]['Need'] === 'Something is Broken' ) {
                 csvVer = 1;
-                categoryNeed = 'I need something New'
+                categoryNeed = 'I need Something New'
                 categoryBroken = 'Something is Broken'
             } else {
                 csvVer = 0;
