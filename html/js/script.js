@@ -237,7 +237,10 @@ function itemSelected(data, itemValue) {
             LinkMessageDIVContent = "";
         } else {
             LinkMessageDIVContent = '<div class="alert alert-primary">' + itemMessages[0].LinkMessage + '</div>';
-        }        
+        }
+        if (document.getElementById("submitBtn").disabled === false) {
+            LinkMessageDIVContent = "";
+        }
         const itemMessageDiv = document.getElementById("item-message");
         itemMessageDiv.innerHTML = LinkMessageDIVContent;            
     }
