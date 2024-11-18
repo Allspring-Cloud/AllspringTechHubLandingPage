@@ -262,6 +262,7 @@ function handleSubmit() {
 
         // Create data object to send to the server
         const data = {
+            click: 'selected',
             need: selectedNeed,
             category: selectedCategory,
             type: selectedType,
@@ -322,23 +323,54 @@ function handleSearchRowClick(event) {
             headerValues.push(headerCell.textContent);
         });
 
-        Link = event.target.parentNode.childNodes[headerValues.indexOf("Link")].textContent;
-        UniqueID = event.target.parentNode.childNodes[headerValues.indexOf("UniqueID")].textContent;
+        selectedNeed = event.target.parentNode.childNodes[headerValues.indexOf("Need")].textContent;
+        selectedCategory = event.target.parentNode.childNodes[headerValues.indexOf("Category")].textContent;
+        selectedType = event.target.parentNode.childNodes[headerValues.indexOf("Type")].textContent;
+        selectedItem= event.target.parentNode.childNodes[headerValues.indexOf("Item")].textContent;
+        uniqueid = event.target.parentNode.childNodes[headerValues.indexOf("UniqueID")].textContent;
+        selectedItemLink = event.target.parentNode.childNodes[headerValues.indexOf("Link")].textContent;        
         LinkMessage = event.target.parentNode.childNodes[headerValues.indexOf("LinkMessage")].textContent;
 
-        if (Link.length === 0) {
+        if (selectedItemLink.length === 0) {
             showLinkMessage(LinkMessage);
-        } else if (Link === null) {
+        } else if (selectedItemLink === null) {
             showLinkMessage(LinkMessage);
         } else {
             // go to link
             showLinkMessage("");
-            gotoLink = Link + "?uniqueid=" + UniqueID;
+            gotoLink = selectedItemLink + "?uniqueid=" + uniqueid;
             console.log(gotoLink);
             window.open(gotoLink, '_blank');
+
+            // Create data object to send to the server
+            const data = {
+                click: 'searched',
+                need: selectedNeed,
+                category: selectedCategory,
+                type: selectedType,
+                item: selectedItem,
+                link: selectedItemLink,
+                uniqueid: uniqueid,
+                timestamp: new Date().toISOString()
+            };
+
+            // Send data to the server using AJAX
+            fetch('log.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(data),
+            })
+            .then(response => response.text())
+            .then(data => {
+                console.log('Data successfully logged:', data);
+            })
+            .catch((error) => {
+                console.error('Error logging data:', error);
+            });
         }
     }
-
 }
 
 function showLinkMessage(LinkMessage) {

@@ -5,7 +5,7 @@ $data = json_decode(file_get_contents('php://input'), true);
 // Check if data was received
 if ($data) {
     // Prepare the log data
-    $logData = date('Y-m-d H:i:s') . " - Need: " . $data['need'] . ", Category: " . $data['category'] . ", Type: " . $data['type'] . ", Item: " . $data['item'] . ", Link: " . $data['link'] . ", UniqueID: " . $data['uniqueid'] . PHP_EOL;
+    $logData = date('Y-m-d H:i:s') . " - Click: " . $data['click'] . " - Need: " . $data['need'] . ", Category: " . $data['category'] . ", Type: " . $data['type'] . ", Item: " . $data['item'] . ", Link: " . $data['link'] . ", UniqueID: " . $data['uniqueid'] . PHP_EOL;
 
     // Append the log data to the log file
     file_put_contents('logs/user_log.txt', $logData, FILE_APPEND);
