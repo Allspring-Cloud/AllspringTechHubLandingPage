@@ -250,7 +250,7 @@ function itemSelected(data, itemValue) {
 // Handle submit button click, open the selected item link in a new tab, and send data to server
 function handleSubmit() {
     const uniqueid = document.getElementById("UniquID").value;
-    const selectedItemLink = document.getElementById("itemLink").value + "?uniqueid=" + uniqueid;
+    const selectedItemLink = document.getElementById("itemLink").value + "?customfield_10487=" + uniqueid;
     const selectedCategory = document.getElementById("category").options[document.getElementById("category").selectedIndex].text;
     const selectedType = document.getElementById("type").options[document.getElementById("type").selectedIndex].text;
     const selectedItem = document.getElementById("item").options[document.getElementById("item").selectedIndex].text;
@@ -338,7 +338,7 @@ function handleSearchRowClick(event) {
         } else {
             // go to link
             showLinkMessage("");
-            gotoLink = selectedItemLink + "?uniqueid=" + uniqueid;
+            gotoLink = selectedItemLink + "?customfield_10487=" + uniqueid;
             console.log(gotoLink);
             window.open(gotoLink, '_blank');
 
