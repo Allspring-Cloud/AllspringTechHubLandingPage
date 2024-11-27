@@ -53,6 +53,7 @@
 * ![Javascript]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![PapaParse][papaparse.com]][PapaParse-url]
+* [![PHP][php.net]][PHP-url]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -111,6 +112,8 @@ https://shields.io/
 [product-screenshot]: images/screenshot.png
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
-[papaparse.com]: https://img.shields.io/badge/PapaParse-0769AD?style=for-the-badge&logo=javascript&logoColor=white
+[papaparse.com]: https://img.shields.io/badge/PapaParse-0769AD?style=for-the-badge&logo=papaparse&logoColor=white
 [PapaParse-url]: https://www.papaparse.com/
 [Javascript]: https://img.shields.io/badge/Javascript-dfca09?style=for-the-badge&logo=javascript&logoColor=ffffff
+[php.net]: https://img.shields.io/badge/PHP-777BB4?logo=php&logoColor=white
+[PHP-url]: https://www.php.net/
