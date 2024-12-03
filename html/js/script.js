@@ -338,7 +338,7 @@ function handleSearchRowClick(event) {
         } else {
             // go to link
             showLinkMessage("");
-            gotoLink = selectedItemLink + "?customfield_10487=" + uniqueid;
+            gotoLink = selectedItemLink + "?customfield_10487=Q-" + uniqueid;
             console.log(gotoLink);
             window.open(gotoLink, '_blank');
 
