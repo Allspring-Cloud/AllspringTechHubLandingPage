@@ -54,85 +54,157 @@
             max-height: 268px;
             object-fit:cover;
         }
+        #ctiContainer {
+            text-align: center;
+        }
+        .center {
+            text-align: center;
+        }
+        .left {
+            text-align: left;
+        }
+        .right {
+            text-align: right;
+        }
+        #watermark
+        {
+            position:fixed;
+            top: 5px;
+            left:5px;
+            opacity:0.5;
+            z-index:99;
+            color:white;
+            font-size: x-large;
+        }
     </style>
 </head>
 <body>
     <div id="headerbg" class="text-center"><img src="images/headerbg.png"></div>
     <div id="message"></div>
-    <div class="container mt-5">
+    <div id="ctiContainer" class="container-fluid">
         <div class="row">
+            <div class="col-md-2">
+            </div>
             <div class="col-md-8">
-                <h2>Select Your Need</h2>
-                <div class="mb-3">
-                    <button id="issueNeed" class="btn btn-outline-primary">Something is broken</button>
-                    <button id="newNeed" class="btn btn-outline-primary">I need something new</button>
-                    <button id="searchCTIs" class="btn btn-outline-primary">Quick search</button>
+                <div class="page-header">
+                    <h1>I need help...</h1>
                 </div>
-                
-                <div class="mb-3" id="searchDiv" style="display: none;">
-                    <input type="text" id="searchField" class="searchField">
-                    <br><br>
-                    <div class="container" style="width: 100%" id="searched-item-message"></div>
-                    <div class="mb-3" id="seachResultsDiv">
-                        <table id="searchResults">
-                            <colgroup>
-                                <col span="1" style="visibility: collapse;">
-                                <col span="1">
-                                <col span="1" style="visibility: collapse;">
-                                <col span="3">
-                                <col span="4" style="visibility: collapse;">
-                            </colgroup>
-                            <thead>
-                                <th>RowID</th>
-                                <th>Need</th>
-                                <th>Hidden sort</th>
-                                <th>Category</th>
-                                <th>Type</th>
-                                <th>Item</th>
-                                <th>Link</th>
-                                <th>NewLink</th>
-                                <th>UniqueID</th>
-                                <th>LinkMessage</th>
-                            </thead>
-                            <tbody id="searchResultsData"></tbody>
-                        </table>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="btn-group" role="group">
+                            <button  id="issueNeed" class="btn btn-outline-primary" type="button">
+                                Something is broken
+                            </button> 
+                            <button id="newNeed" class="btn btn-outline-primary" type="button">
+                                I need something new
+                            </button> 
+                            <button id="searchCTIs" class="btn btn-outline-primary" type="button">
+                                Quick search
+                            </button> 
+                        </div>
                     </div>
                 </div>
-
-                <div class="mb-3" id="selectionDiv" style="display: none;">
-                    <h3 class="mt-4">Select Your Options</h3>
-                    <form id="selectionForm">
-                        <div class="mb-3" id="selectionCategory">
-                            <label for="category" class="form-label">Category</label>
-                            <select class="form-select" id="category" required disabled>
-                                <option value="">Select Category</option>
-                            </select>
+                <div class="row">
+                    <div class="col-md-12">
+                        <br>
+                        <div class="container" style="width: 100%" id="item-message"></div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12" id="searchDiv" style="display: none;">
+                        <div class="row">
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-10">
+                                <br>
+                                <input type="text" id="searchField" class="searchField">
+                                <br><br>
+                            </div>
+                            <div class="col-md-1">
+                            </div>
                         </div>
-                        <div class="mb-3" is="selectionType">
-                            <label for="type" class="form-label">Type</label>
-                            <select class="form-select" id="type" required disabled>
-                                <option value="">Select Type</option>
-                            </select>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table id="searchResults" class="table">
+                                    <colgroup>
+                                        <col span="1" style="visibility: collapse;">
+                                        <col span="1">
+                                        <col span="1" style="visibility: collapse;">
+                                        <col span="3">
+                                        <col span="4" style="visibility: collapse;">
+                                    </colgroup>
+                                    <thead>
+                                        <th>RowID</th>
+                                        <th>Need</th>
+                                        <th>Hidden sort</th>
+                                        <th>Category</th>
+                                        <th>Type</th>
+                                        <th>Item</th>
+                                        <th>Link</th>
+                                        <th>NewLink</th>
+                                        <th>UniqueID</th>
+                                        <th>LinkMessage</th>
+                                    </thead>
+                                    <tbody id="searchResultsData"></tbody>
+                                </table>
+                            </div>
                         </div>
-                        <div class="mb-3" id="item-combo">
-                            <label for="item" class="form-label">Item</label>
-                            <select class="form-select" id="item" required disabled>
-                                <option value="">Select Item</option>
-                            </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 left" id="selectionDiv" style="display: none;">
+                        <div class="row">
+                            <h3 class="mt-4 center">Select Your Options</h3>
                         </div>
-                        <div class="mb-3" id="selectionSubmit">
-                            <button type="button" id="submitBtn" class="btn btn-success" disabled>Submit</button>
-                            <input type="hidden" id="itemLink" name="itemLink" value="">
-                            <input type="hidden" id="UniquID" name="UniquID" value="">
-                        </div>
-                    </form>
+                        <form id="selectionForm">
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8 mb-3" id="selectionCategory">
+                                    <label for="category" class="form-label">Category</label>
+                                    <select class="form-select" id="category" required disabled>
+                                        <option value="">Select Category</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8 mb-3" id="selectionType">
+                                    <label for="type" class="form-label">Type</label>
+                                    <select class="form-select" id="type" required disabled>
+                                        <option value="">Select Type</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8 mb-3" id="item-combo">
+                                    <label for="item" class="form-label">Item</label>
+                                    <select class="form-select" id="item" required disabled>
+                                        <option value="">Select Item</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8 mb-3" id="selectionSubmit">
+                                    <button type="button" id="submitBtn" class="btn btn-success" disabled>Submit</button>
+                                    <input type="hidden" id="itemLink" name="itemLink" value="">
+                                    <input type="hidden" id="UniquID" name="UniquID" value="">
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="container" style="width: 100%" id="item-message"></div>
+            <div class="col-md-2">
             </div>
         </div>
     </div>
+    <div id="watermark"></div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>

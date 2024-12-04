@@ -103,6 +103,8 @@ function showSearchCTIs() {
     document.getElementById("newNeed").classList.remove("btn-primary");
     document.getElementById("issueNeed").classList.add("btn-outline-secondary");
     document.getElementById("issueNeed").classList.remove("btn-primary");
+
+    document.getElementById("searchCTIs").scrollIntoView({ behavior: "smooth" });
 }
 
 // Handle need selection and style the buttons accordingly
@@ -124,6 +126,8 @@ function handleNeedSelection(need, clickedBtnId, otherBtnId) {
     // Reset and populate the Category dropdown based on the need
     resetDropdowns();
     populateCategoryDropdown(csvData, need);
+
+    document.getElementById("selectionSubmit").scrollIntoView({ behavior: "smooth" });
 }
 
 // Reset all dropdowns and the submit button
@@ -381,7 +385,7 @@ function showLinkMessage(LinkMessage) {
     } else {
         LinkMessageDIVContent = '<div class="alert alert-primary">' + LinkMessage + '</div>';
     }        
-    const itemMessageDiv = document.getElementById("searched-item-message");
+    const itemMessageDiv = document.getElementById("item-message");
     itemMessageDiv.innerHTML = LinkMessageDIVContent;  
 
 }
