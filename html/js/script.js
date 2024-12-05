@@ -104,7 +104,7 @@ function showSearchCTIs() {
     document.getElementById("issueNeed").classList.add("btn-outline-secondary");
     document.getElementById("issueNeed").classList.remove("btn-primary");
 
-    document.getElementById("searchCTIs").scrollIntoView({ behavior: "smooth" });
+    // document.getElementById("searchField").focus();
 }
 
 // Handle need selection and style the buttons accordingly
@@ -126,8 +126,8 @@ function handleNeedSelection(need, clickedBtnId, otherBtnId) {
     // Reset and populate the Category dropdown based on the need
     resetDropdowns();
     populateCategoryDropdown(csvData, need);
-
-    document.getElementById("selectionSubmit").scrollIntoView({ behavior: "smooth" });
+    
+    // document.getElementById("category").focus();
 }
 
 // Reset all dropdowns and the submit button
