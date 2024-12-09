@@ -3,47 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Transparent Buttons</title>
+    <title>Stacked Buttons</title>
     <style>
         /* General button styling */
         button {
-            border: 2px solid #007BFF; /* Border with a blue color */
-            background-color: transparent; /* Transparent background */
-            color: #007BFF; /* Text color matches border */
-            padding: 10px 5px;
-            font-size: 12px;
+            border: 1px solid black; /* Border with a blue color */
+            background-color: white; /* Transparent background */
+            color: #0d6efd; /* Text color matches border */
+            padding: 4px 10px;
+            font-size: 13px;
             cursor: pointer;
-            border-radius: 5px; /* Rounded edges */
+            border-radius: 4px; /* Rounded edges */
             transition: all 0.3s ease; /* Smooth hover effect */
         }
 
         /* Hover effect for buttons */
         button:hover {
-            background-color: #007BFF; /* Blue background on hover */
-            color: white; /* White text on hover */
+            background-color: #0d6efd; /* blue background on hover */
+            color: white; /* white text on hover */
         }
 
-        /* Positioning for the buttons */
-        .top-right-button {
-            position: absolute;
+        /* Container for buttons */
+        .button-container {
+            position: fixed; /* Stays at the top-right */
             top: 10px;
             right: 10px;
+            display: flex;
+            flex-direction: column; /* Stack buttons vertically */
+            gap: 5px; /* Space between buttons */
         }
 
-        .approvals-button {
-            position: absolute;
-            top: 60px; /* Below the first button */
-            right: 10px;
+        /* Centered text and buttons below the header */
+        .content {
+            text-align: center;
+            margin-top: 10px; /* Adjust to avoid overlapping buttons */
+        }
+
+        /* Media query for small screens */
+        @media (max-width: 900px) {
+            .button-container {
+                position: static; /* Move buttons to the flow of the document */
+                margin: 10px auto;
+                align-items: center; /* Center buttons horizontally */
+            }
         }
     </style>
 </head>
 <body>
-    <!-- Button at the top-right -->
-   <button class="top-right-button" onclick="window.open('https://allspring.atlassian.net/servicedesk/customer/user/requests?page=1&reporter=all&statuses=open', '_blank'); return false;">
-        JSM Request Center
-    </button>
-    
+ <!-- Button container -->
+    <div class="button-container">
+        <button onclick="window.open('https://allspring.atlassian.net/servicedesk/customer/user/requests?page=1&reporter=all&statuses=open', '_blank'); return false;">
+           &ensp; VIEW MY TICKETS&ensp;&ensp;
+        </button>
+	<!-- Approvals Button -->
+        <button onclick="window.open('https://allspring.atlassian.net/servicedesk/customer/user/approvals?page=1', '_blank'); return false;">
+        	VIEW MY APPROVALS 
+        </button>
+    </div>
+
     <!-- Header Section -->
+<div class="content">
 <center>
 <br><b>For immediate assistance, please contact Allspring Help Desk by emailing  <a href="mailto:ETHelp@allspringglobal.com">ETHelp@allspringglobal.com</a>
 <br>or call one of the toll-free numbers listed below:</b>
@@ -54,5 +73,6 @@
 
 <br>Knowledge Base here: <a href="https://allspring.atlassian.net/servicedesk/customer/article/407732600" target="_blank">Allspring Knowledge Base</a>
 </center>
+ </div>
 </body>
 </html></div>

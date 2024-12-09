@@ -88,6 +88,18 @@ window.onload = function () {
     document.getElementById("searchResults").addEventListener('click', function(event) {
         handleSearchRowClick(event);
     });
+
+    // add watermark if needed
+    const thisUrl = window.location.href;
+    const hostName = new URL(thisUrl).hostname;
+
+    if (hostName == "techhubwip.allspringglobal.com") {
+        const watermarkContent = document.getElementById("watermark");
+        watermarkContent.innerHTML = "WIP WIP WIP WIP WIP"
+    } else if (hostName != "techhub.allspringglobal.com") {
+        const watermarkContent = document.getElementById("watermark");
+        watermarkContent.innerHTML = "WIP LOCALHOST WIP"        
+    }
 };
 
 // Handle searchCTis click - table display and setup
@@ -104,7 +116,7 @@ function showSearchCTIs() {
     document.getElementById("issueNeed").classList.add("btn-outline-secondary");
     document.getElementById("issueNeed").classList.remove("btn-primary");
 
-    // document.getElementById("searchField").focus();
+    document.getElementById("searchField").focus();
 }
 
 // Handle need selection and style the buttons accordingly
@@ -127,7 +139,7 @@ function handleNeedSelection(need, clickedBtnId, otherBtnId) {
     resetDropdowns();
     populateCategoryDropdown(csvData, need);
     
-    // document.getElementById("category").focus();
+    document.getElementById("category").focus();
 }
 
 // Reset all dropdowns and the submit button
