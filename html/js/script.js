@@ -199,6 +199,8 @@ function populateTypeDropdown(data, selectedCategory) {
     typeDropdown.addEventListener('change', function() {
         populateItemDropdown(data, selectedCategory, typeDropdown.value);
     });
+
+    document.getElementById("type").focus();
 }
 
 // Populate the Item dropdown based on Type selection
@@ -226,6 +228,8 @@ function populateItemDropdown(data, selectedCategory, selectedType) {
             itemSelected(data, itemDropdown.value);
         }
     });
+
+    document.getElementById("item").focus();
 }
 
 // handle item select
