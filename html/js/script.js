@@ -3,6 +3,8 @@ let selectedNeed = "";
 let csvVer = 0;
 let categoryNeed = '';
 let categoryBroken = '';
+let searchableColumns = [];
+
 
 // Load and parse the CSV file using PapaParse
 window.onload = function () {
@@ -39,6 +41,21 @@ window.onload = function () {
             }
         }
     });
+
+    // create array of headers
+    const table = document.getElementById("searchResults"); 
+    // Get all header cells within the table
+    const headerCells = table.querySelectorAll("th");
+
+    headerValues = [];
+    headerCells.forEach(headerCell => {
+        headerValues.push(headerCell.textContent);
+    });
+
+    searchableColumns.push(headerValues.indexOf("Category"));
+    searchableColumns.push(headerValues.indexOf("Type"));
+    searchableColumns.push(headerValues.indexOf("Item"));
+    
 
     fetch('data/message.txt')
     .then(response => response.text())
@@ -315,7 +332,8 @@ function searchTable(table, searchTerm) {
         rowStyle = 'none';
         row = table.rows[i];
         row.style.display = 'none';
-        for (var j = 0; j < row.children.length; j++) {
+        //for (var j = 0; j < row.children.length; j++) {
+        for (let j of searchableColumns) {            
             let cell = row.children[j];
             if (cell) {
                 if (cell.textContent.toLowerCase().includes(searchTerm)) {
@@ -338,10 +356,10 @@ function handleSearchRowClick(event) {
         // Get all header cells within the table
         const headerCells = table.querySelectorAll("th");
         // Iterate over header cells and extract their values
-        const headerValues = [];
-        headerCells.forEach(headerCell => {
-            headerValues.push(headerCell.textContent);
-        });
+        //const headerValues = [];
+        //headerCells.forEach(headerCell => {
+        //    headerValues.push(headerCell.textContent);
+        //});
 
         selectedNeed = event.target.parentNode.childNodes[headerValues.indexOf("Need")].textContent;
         selectedCategory = event.target.parentNode.childNodes[headerValues.indexOf("Category")].textContent;
